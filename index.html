@@ -15,7 +15,9 @@
             color: #00FF00; /* Retro Matrix Terminal Green */
             font-family: 'Courier New', Courier, monospace; 
             overflow-x: hidden;
-            cursor: crosshair; /* Keeps your gray crosshair base cursor */
+            
+            /* Clean vintage crosshair cursor style fallback */
+            cursor: crosshair; 
         }
 
         /* Pure CSS Tiling Star Universe Background Layer */
@@ -31,38 +33,13 @@
             background-size: 550px 550px;
             background-position: 0 0, 40px 60px;
             z-index: 1;
-            pointer-events: none;
+            pointer-events: none; /* Allows clicks to pass right through */
             animation: moveStars 60s linear infinite;
         }
 
         @keyframes moveStars {
             from { background-position: 0 0, 40px 60px; }
             to { background-position: 550px 550px, 590px 610px; }
-        }
-
-        /* STYLES FOR THE GENERATED PINK TRAIL PARTICLES */
-        .pink-sparkle {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background-color: #FF00FF; /* Cyber Hot Pink */
-            box-shadow: 0 0 8px #FF00FF, 0 0 12px #00FFFF; /* Pink & Cyan Neon Glow */
-            border-radius: 50%;
-            pointer-events: none; /* CRITICAL: Clicks pass completely through */
-            z-index: 100000;
-            transform: translate(-50%, -50%);
-            animation: fadeOutSparkle 0.6s ease-out forwards;
-        }
-
-        @keyframes fadeOutSparkle {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(0.2);
-                opacity: 0;
-            }
         }
 
         /* 2000s SPLASH ENTER SCREEN */
@@ -95,13 +72,13 @@
             font-weight: bold;
             background-color: #000;
             color: #00FF00;
-            border: 3px outset #00FF00; 
+            border: 3px outset #00FF00; /* Retro bevel block button styling */
             padding: 10px 50px;
             text-transform: uppercase;
             box-shadow: 5px 5px 0px #FF00FF;
             letter-spacing: 2px;
             position: relative;
-            z-index: 10005; 
+            z-index: 10005; /* Keeps button on the very top layer */
             cursor: pointer;
         }
 
@@ -288,11 +265,25 @@
     </div>
 
     <script>
-        // Create an active particle emitter tracking mouse movements
-        document.addEventListener('mousemove', function(e) {
-            // Create a sparkle div element
-            const sparkle = document.createElement('div');
-            sparkle.className = 'pink-sparkle';
+        function enterSite() {
+            document.getElementById('enter-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
             
-            // Assign coordinate positions
-            sparkle.style.left = e.clientX + 'px';
+            var audio = document.getElementById('bg-audio');
+            audio.play().catch(function(err) {
+                console.log("Playback system error:", err);
+            });
+        }
+
+        function toggleAudio() {
+            var audio = document.getElementById('bg-audio');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+    </script>
+
+</body>
+</html>
