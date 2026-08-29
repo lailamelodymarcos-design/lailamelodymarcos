@@ -12,14 +12,13 @@
             width: 100%;
             height: 100%;
             background-color: #000000;
-            /* Classic space background. Later we can replace this with a repeating image/gif tile! */
             background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
                               radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
             background-size: 550px 550px;
             background-position: 0 0, 40px 60px;
             color: #00FF00; /* Retro Matrix/Terminal green */
-            font-family: 'Courier New', Courier, monospace; /* Pixelated retro font feel */
-            cursor: crosshair; /* Basic vintage custom cursor */
+            font-family: 'Courier New', Courier, monospace; 
+            cursor: crosshair; 
         }
 
         /* 2000s SPLASH ENTER SCREEN */
@@ -48,19 +47,20 @@
         }
 
         #enter-button {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
             background-color: #000;
             color: #00FF00;
-            border: 3px outset #00FF00; /* Authentic bevel 95-style block button */
-            padding: 10px 40px;
+            border: 3px outset #00FF00; /* Authentic bevel block button */
+            padding: 10px 50px;
             text-transform: uppercase;
             cursor: pointer;
             box-shadow: 5px 5px 0px #FF00FF;
+            letter-spacing: 2px;
         }
 
         #enter-button:active {
-            border: 3px inset #00FF00; /* Pushed-down visual effect */
+            border: 3px inset #00FF00; 
             box-shadow: 2px 2px 0px #FF00FF;
         }
 
@@ -143,8 +143,8 @@
     <!-- RETRO ENTER SCREEN -->
     <div id="enter-screen" onclick="enterSite()">
         <div class="welcome-gif-text">::: WELCOME TO MY WORLD :::</div>
-        <button id="enter-button">CLICK TO ENTER</button>
-        <p style="color: #888; font-size: 0.8rem; margin-top: 20px;">[ Sound will play upon entry ]</p>
+        <button id="enter-button">ENTER</button>
+        <p style="color: #888; font-size: 0.8rem; margin-top: 20px;">[ Click tracking player loads upon entry ]</p>
     </div>
 
     <!-- MAIN RETRO PORTAL -->
@@ -182,10 +182,11 @@
                 <span>audio_player.exe</span>
                 <span>[X]</span>
             </div>
-            <div class="window-content" style="text-align: center;">
-                <p>🎵 Background audio active! 🎵</p>
-                <!-- Placeholder for music track -->
-                <div id="music-container"></div>
+            <div class="window-content" style="text-align: center; padding: 10px;">
+                <!-- Your specific Spotify Embed Code Integration -->
+                <div id="music-container">
+                    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/2jjwQENSoGnYbQEK4acuC6?utm_source=generator&si=1b915bf32f6344a3" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
             </div>
         </div>
     </div>
@@ -196,12 +197,6 @@
             document.getElementById('enter-screen').style.display = 'none';
             // Show site portal
             document.getElementById('main-content').style.display = 'block';
-            // Play background music function
-            playMusic();
-        }
-
-        function playMusic() {
-            console.log("Retro sound sequence initialized.");
         }
     </script>
 
