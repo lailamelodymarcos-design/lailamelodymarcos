@@ -3,87 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal World</title>
+    <title>★ MY PERSONAL ARCHIVE ★</title>
     <style>
-        /* Base styles to make it look clean */
+        /* Early 2000s Web Layout & Theme */
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            background-color: #111;
-            color: #fff;
-            font-family: sans-serif;
-            overflow: hidden;
+            background-color: #000000;
+            /* Classic space background. Later we can replace this with a repeating image/gif tile! */
+            background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                              radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+            background-size: 550px 550px;
+            background-position: 0 0, 40px 60px;
+            color: #00FF00; /* Retro Matrix/Terminal green */
+            font-family: 'Courier New', Courier, monospace; /* Pixelated retro font feel */
+            cursor: crosshair; /* Basic vintage custom cursor */
         }
 
-        /* The Splash/Enter Screen overlay */
+        /* 2000s SPLASH ENTER SCREEN */
         #enter-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #000;
+            background-color: #050505;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            cursor: pointer;
+            text-align: center;
+        }
+
+        .welcome-gif-text {
+            font-size: 2.5rem;
+            color: #FF00FF; /* Cyber Hot Pink */
+            font-weight: bold;
+            text-shadow: 3px 3px #00FFFF; /* Bright 3D shadow effect */
+            margin-bottom: 30px;
+            letter-spacing: 3px;
         }
 
         #enter-button {
-            font-size: 2rem;
-            letter-spacing: 2px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background-color: #000;
+            color: #00FF00;
+            border: 3px outset #00FF00; /* Authentic bevel 95-style block button */
+            padding: 10px 40px;
             text-transform: uppercase;
-            border: 2px solid #fff;
-            padding: 15px 30px;
-            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 5px 5px 0px #FF00FF;
         }
 
-        #enter-button:hover {
-            background-color: #fff;
-            color: #000;
+        #enter-button:active {
+            border: 3px inset #00FF00; /* Pushed-down visual effect */
+            box-shadow: 2px 2px 0px #FF00FF;
         }
 
-        /* The actual website content (hidden at start) */
+        /* WEB SITE CONTENT AREA */
         #main-content {
             display: none;
-            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Vintage Web Header */
+        header {
             text-align: center;
+            border-bottom: 2px dashed #00FFFF;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            color: #FFFF00; /* Neon Yellow */
+            font-size: 2.2rem;
+            margin: 10px 0;
+        }
+
+        .marquee-simulation {
+            background-color: #111;
+            border: 1px solid #00FF00;
+            padding: 5px;
+            color: #00FFFF;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        /* Content Windows */
+        .window {
+            background-color: #111122;
+            border: 2px solid #00FF00;
+            margin-bottom: 25px;
+            box-shadow: 6px 6px 0px rgba(0, 255, 0, 0.2);
+        }
+
+        .window-title {
+            background: linear-gradient(90deg, #FF00FF, #00FFFF);
+            color: #000;
+            padding: 4px 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .window-content {
+            padding: 15px;
+        }
+
+        /* Simple Navigation Links */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .nav-menu a {
+            color: #00FFFF;
+            text-decoration: none;
+            border: 1px solid #00FFFF;
+            padding: 5px 10px;
+        }
+
+        .nav-menu a:hover {
+            background-color: #00FFFF;
+            color: #000;
         }
     </style>
 </head>
 <body>
 
-    <!-- ENTER SCREEN -->
+    <!-- RETRO ENTER SCREEN -->
     <div id="enter-screen" onclick="enterSite()">
-        <div id="enter-button">ENTER</div>
+        <div class="welcome-gif-text">::: WELCOME TO MY WORLD :::</div>
+        <button id="enter-button">CLICK TO ENTER</button>
+        <p style="color: #888; font-size: 0.8rem; margin-top: 20px;">[ Sound will play upon entry ]</p>
     </div>
 
-    <!-- MAIN WEBSITE CONTENT -->
+    <!-- MAIN RETRO PORTAL -->
     <div id="main-content">
-        <h1>Welcome to My Archive</h1>
-        <p>This is the start of something amazing.</p>
-        
-        <!-- Placeholder for your audio track -->
-        <div id="music-container"></div>
+        <header>
+            <h1>★ LAILA'S CREATIVE ARCHIVE ★</h1>
+            <div class="nav-menu">
+                <a href="#art">🎨 ART</a>
+                <a href="#photo">📷 PHOTO</a>
+                <a href="#writing">✍️ WRITING</a>
+                <a href="#projects">🎮 PROJECTS</a>
+            </div>
+        </header>
+
+        <!-- Simulated scrolling text bar -->
+        <div class="marquee-simulation">
+            <marquee scrollamount="4">✦ Site last updated: August 2026 ✦ Welcome to the handmade web zone! ✦ Feel free to look around... ✦</marquee>
+        </div>
+
+        <!-- Main Window Container -->
+        <div class="window" id="about">
+            <div class="window-title">
+                <span>about_me.txt</span>
+                <span>[X]</span>
+            </div>
+            <div class="window-content">
+                <p>Welcome to my corner of the web. This site is completely custom-built from zero, inspired by old-school digital freedom.</p>
+                <p>Use the navigation tabs above to browse through my art logs, videos, and games.</p>
+            </div>
+        </div>
+
+        <!-- Music Window Container -->
+        <div class="window" id="music">
+            <div class="window-title">
+                <span>audio_player.exe</span>
+                <span>[X]</span>
+            </div>
+            <div class="window-content" style="text-align: center;">
+                <p>🎵 Background audio active! 🎵</p>
+                <!-- Placeholder for music track -->
+                <div id="music-container"></div>
+            </div>
+        </div>
     </div>
 
     <script>
         function enterSite() {
-            // 1. Hide the enter screen
+            // Hide intro screen
             document.getElementById('enter-screen').style.display = 'none';
-            
-            // 2. Show the main website
+            // Show site portal
             document.getElementById('main-content').style.display = 'block';
-            
-            // 3. Trigger music functions here later
+            // Play background music function
             playMusic();
         }
 
         function playMusic() {
-            console.log("Music triggered!");
+            console.log("Retro sound sequence initialized.");
         }
     </script>
 
