@@ -15,9 +15,7 @@
             color: #00FF00; /* Retro Matrix Terminal Green */
             font-family: 'Courier New', Courier, monospace; 
             overflow-x: hidden;
-            
-            /* Clean vintage crosshair cursor style fallback */
-            cursor: crosshair; 
+            cursor: crosshair; /* Bulletproof vintage system crosshair */
         }
 
         /* Pure CSS Tiling Star Universe Background Layer */
@@ -33,7 +31,7 @@
             background-size: 550px 550px;
             background-position: 0 0, 40px 60px;
             z-index: 1;
-            pointer-events: none; /* Allows clicks to pass right through */
+            pointer-events: none;
             animation: moveStars 60s linear infinite;
         }
 
@@ -77,8 +75,6 @@
             text-transform: uppercase;
             box-shadow: 5px 5px 0px #FF00FF;
             letter-spacing: 2px;
-            position: relative;
-            z-index: 10005; /* Keeps button on the very top layer */
             cursor: pointer;
         }
 
@@ -162,6 +158,60 @@
             color: #000;
         }
 
+        /* RETRO BLOG ROW LAYOUT CODES */
+        .blog-post {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            border-bottom: 1px dashed #444;
+            padding: 15px 0;
+            align-items: flex-start;
+        }
+        
+        /* Auto stacks images on tiny phone screens nicely */
+        @media (max-width: 600px) {
+            .blog-post {
+                flex-direction: column;
+            }
+            .blog-img-frame {
+                width: 100% !important;
+                height: auto;
+            }
+        }
+
+        .blog-img-frame {
+            width: 160px;
+            min-width: 160px;
+            border: 2px outset #00FFFF;
+            background-color: #000;
+            padding: 3px;
+        }
+
+        .blog-img-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .blog-text-area {
+            flex-grow: 1;
+        }
+
+        .blog-date {
+            color: #FF00FF; /* Hot Pink dates */
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .blog-title {
+            color: #FFFF00; /* Neon Yellow titles */
+            font-size: 1.1rem;
+            margin: 0 0 8px 0;
+            text-transform: uppercase;
+        }
+
+        /* Basic Gallery Grids for Art/Photos */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -202,6 +252,7 @@
             <h1>★ LAILA'S CREATIVE ARCHIVE ★</h1>
             <div class="nav-menu">
                 <a href="#about">📁 ABOUT</a>
+                <a href="#blog">✍️ BLOG</a>
                 <a href="#art">🎨 ART</a>
                 <a href="#photo">📷 PHOTO</a>
             </div>
@@ -233,57 +284,25 @@
             </div>
         </div>
 
-        <div class="window" id="art">
+        <!-- NEW ATTACHED STORY BLOG WINDOW BOX -->
+        <div class="window" id="blog">
             <div class="window-title">
-                <span>my_art_gallery.sys</span>
+                <span>diary_logs.exe</span>
                 <span>[X]</span>
             </div>
             <div class="window-content">
-                <p>This panel will display my custom paintings, illustrations, and art projects over time.</p>
-                <div class="gallery-grid">
-                    <div class="gallery-item">[ Art Piece 1 Placeholder ]</div>
-                    <div class="gallery-item">[ Art Piece 2 Placeholder ]</div>
-                    <div class="gallery-item">[ Art Piece 3 Placeholder ]</div>
+                
+                <!-- Blog Entry 1 -->
+                <div class="blog-post">
+                    <div class="blog-img-frame">
+                        <!-- Points directly to your local file path asset -->
+                        <img src="blog1.jpg" alt="Story Asset" onerror="this.style.display='none';">
+                        <div style="color:#666; font-size:0.7rem; text-align:center; padding-top:4px;">[ image_file.dat ]</div>
+                    </div>
+                    <div class="blog-text-area">
+                        <div class="blog-date">LOST DATE // AUG 2026</div>
+                        <h3 class="blog-title">My First Log Entry</h3>
+                        <p style="margin: 0; line-height: 1.4;">This is the starting journal story entry for my personal handmade database core site. I can type stories, list thoughts, or log ideas right here, with a dedicated visual asset framing my paragraph securely.</p>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="window" id="photo">
-            <div class="window-title">
-                <span>camera_roll_archive.dll</span>
-                <span>[X]</span>
-            </div>
-            <div class="window-content">
-                <p>A continuous folder stream detailing snapshots, visual projects, and photography logs.</p>
-                <div class="gallery-grid">
-                    <div class="gallery-item">[ Photo Asset 1 Placeholder ]</div>
-                    <div class="gallery-item">[ Photo Asset 2 Placeholder ]</div>
-                    <div class="gallery-item">[ Photo Asset 3 Placeholder ]</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function enterSite() {
-            document.getElementById('enter-screen').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            
-            var audio = document.getElementById('bg-audio');
-            audio.play().catch(function(err) {
-                console.log("Playback system error:", err);
-            });
-        }
-
-        function toggleAudio() {
-            var audio = document.getElementById('bg-audio');
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
-        }
-    </script>
-
-</body>
-</html>
