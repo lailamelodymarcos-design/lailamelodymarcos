@@ -12,21 +12,31 @@
             width: 100%;
             height: 100%;
             background-color: #000000;
-            
-            /* Tiling animated space background pattern */
-            background-image: url('https://archive.org');
-            background-repeat: repeat; 
-            
-            color: #00FF00; /* Retro Matrix/Terminal green */
+            color: #00FF00; /* Retro Matrix Terminal green */
             font-family: 'Courier New', Courier, monospace; 
-            
-            /* Custom Vintage Cursor (Crosshair fallback) */
-            cursor: url('https://cursors-4u.net'), url('https://cursors-4u.net'), crosshair !important;
+            overflow-x: hidden;
         }
 
-        /* Ensure clickable things retain custom cursor pointer vibe */
-        button, a, #enter-screen {
-            cursor: url('https://cursors-4u.net'), pointer !important;
+        /* Pure CSS Twinkling Background Layer */
+        #star-universe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+            background-size: 550px 550px;
+            background-position: 0 0, 40px 60px;
+            z-index: 1;
+            pointer-events: none;
+            animation: moveStars 60s linear infinite;
+        }
+
+        @keyframes moveStars {
+            from { background-position: 0 0, 40px 60px; }
+            to { background-position: 550px 550px, 590px 610px; }
         }
 
         /* 2000s SPLASH ENTER SCREEN */
@@ -37,8 +47,6 @@
             width: 100%;
             height: 100%;
             background-color: #050505;
-            background-image: url('https://archive.org');
-            background-repeat: repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -61,11 +69,12 @@
             font-weight: bold;
             background-color: #000;
             color: #00FF00;
-            border: 3px outset #00FF00; /* Authentic bevel block button */
+            border: 3px outset #00FF00; 
             padding: 10px 50px;
             text-transform: uppercase;
             box-shadow: 5px 5px 0px #FF00FF;
             letter-spacing: 2px;
+            z-index: 10000;
         }
 
         #enter-button:active {
@@ -73,21 +82,22 @@
             box-shadow: 2px 2px 0px #FF00FF;
         }
 
-        /* WEB SITE CONTENT AREA */
+        /* MAIN WEBSITE CONTENT AREA */
         #main-content {
             display: none;
+            position: relative;
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
+            z-index: 5;
         }
 
-        /* Vintage Web Header */
         header {
             text-align: center;
             border-bottom: 2px dashed #00FFFF;
             padding-bottom: 20px;
             margin-bottom: 30px;
-            background-color: rgba(0, 0, 0, 0.7); 
+            background-color: rgba(0, 0, 0, 0.85); 
             padding: 15px;
         }
 
@@ -106,9 +116,8 @@
             margin-bottom: 20px;
         }
 
-        /* Content Windows */
         .window {
-            background-color: rgba(17, 17, 34, 0.9); /* Slight window transparency */
+            background-color: rgba(17, 17, 34, 0.95); 
             border: 2px solid #00FF00;
             margin-bottom: 25px;
             box-shadow: 6px 6px 0px rgba(0, 255, 0, 0.2);
@@ -128,7 +137,6 @@
             padding: 15px;
         }
 
-        /* Simple Navigation Links */
         .nav-menu {
             display: flex;
             justify-content: center;
@@ -149,7 +157,6 @@
             color: #000;
         }
 
-        /* Grid Layout for Gallery Placeholders */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -167,11 +174,31 @@
             color: #888;
             font-size: 0.8rem;
         }
+
+        /* Code-Generated Retro Cursor Sparkle style */
+        .cursor-sparkle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background-color: #FF00FF;
+            box-shadow: 0 0 8px #00FFFF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 100000;
+            transform: translate(-50%, -50%);
+            transition: transform 0.05s linear;
+        }
     </style>
 </head>
 <body>
 
-    <!-- HIDDEN RETRO AUDIO TRACK LOADER -->
+    <!-- DIGITAL COSMOS LAYER -->
+    <div id="star-universe"></div>
+
+    <!-- CODE GENERATED CURSOR ELEMENT -->
+    <div id="custom-cursor" class="cursor-sparkle"></div>
+
+    <!-- HIDDEN AUDIO ENGINE -->
     <audio id="bg-audio" loop src="bg-music.mp3"></audio>
 
     <!-- RETRO ENTER SCREEN -->
@@ -192,12 +219,10 @@
             </div>
         </header>
 
-        <!-- Simulated scrolling text bar -->
         <div class="marquee-simulation">
             <marquee scrollamount="4">✦ Site last updated: August 2026 ✦ Welcome to the handmade web zone! ✦ Feel free to look around... ✦</marquee>
         </div>
 
-        <!-- Main Window Container -->
         <div class="window" id="about">
             <div class="window-title">
                 <span>about_me.txt</span>
@@ -209,7 +234,6 @@
             </div>
         </div>
 
-        <!-- Clean Audio Controller Window (No Spotify) -->
         <div class="window" id="music">
             <div class="window-title">
                 <span>audio_player.exe</span>
@@ -221,7 +245,6 @@
             </div>
         </div>
 
-        <!-- Art Window Showcase Panel Placeholder -->
         <div class="window" id="art">
             <div class="window-title">
                 <span>my_art_gallery.sys</span>
@@ -237,7 +260,6 @@
             </div>
         </div>
 
-        <!-- Photography Window Showcase Panel Placeholder -->
         <div class="window" id="photo">
             <div class="window-title">
                 <span>camera_roll_archive.dll</span>
@@ -255,6 +277,13 @@
     </div>
 
     <script>
+        // Track mouse position to update our custom neon cursor
+        const cursorInstance = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursorInstance.style.left = e.clientX + 'px';
+            cursorInstance.style.top = e.clientY + 'px';
+        });
+
         function enterSite() {
             document.getElementById('enter-screen').style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
@@ -270,10 +299,3 @@
             if (audio.paused) {
                 audio.play();
             } else {
-                audio.pause();
-            }
-        }
-    </script>
-
-</body>
-</html>
