@@ -30,7 +30,7 @@
             background-size: 550px 550px;
             background-position: 0 0, 40px 60px;
             z-index: 1;
-            pointer-events: none;
+            pointer-events: none; /* Allows clicks to pass through */
             animation: moveStars 60s linear infinite;
         }
 
@@ -75,6 +75,7 @@
             box-shadow: 5px 5px 0px #FF00FF;
             letter-spacing: 2px;
             z-index: 10000;
+            cursor: pointer;
         }
 
         #enter-button:active {
@@ -183,10 +184,10 @@
             background-color: #FF00FF;
             box-shadow: 0 0 8px #00FFFF;
             border-radius: 50%;
-            pointer-events: none;
+            pointer-events: none; /* CRITICAL FIX: Stops cursor from blocking clicks */
             z-index: 100000;
             transform: translate(-50%, -50%);
-            transition: transform 0.05s linear;
+            transition: transform 0.02s linear;
         }
     </style>
 </head>
@@ -202,9 +203,10 @@
     <audio id="bg-audio" loop src="bg-music.mp3"></audio>
 
     <!-- RETRO ENTER SCREEN -->
-    <div id="enter-screen" onclick="enterSite()">
+    <!-- Removed onclick from entire screen, bound strictly to button interface below -->
+    <div id="enter-screen">
         <div class="welcome-gif-text">::: WELCOME TO MY WORLD :::</div>
-        <button id="enter-button">ENTER</button>
+        <button id="enter-button" onclick="enterSite()">ENTER</button>
         <p style="color: #fff; font-size: 0.8rem; margin-top: 20px; text-shadow: 1px 1px #000;">[ Background music starts upon entry ]</p>
     </div>
 
@@ -285,17 +287,10 @@
         });
 
         function enterSite() {
+            // Hide intro screen
             document.getElementById('enter-screen').style.display = 'none';
+            // Show site portal
             document.getElementById('main-content').style.display = 'block';
             
             var audio = document.getElementById('bg-audio');
             audio.play().catch(function(err) {
-                console.log("Playback system error:", err);
-            });
-        }
-
-        function toggleAudio() {
-            var audio = document.getElementById('bg-audio');
-            if (audio.paused) {
-                audio.play();
-            } else {
