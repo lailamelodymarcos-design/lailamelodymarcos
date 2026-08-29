@@ -1,289 +1,1394 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>★ MY PERSONAL ARCHIVE ★</title>
-    <style>
-        /* Stable Early 2000s Web Layout & Theme */
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000000;
-            color: #00FF00; /* Retro Matrix Terminal Green */
-            font-family: 'Courier New', Courier, monospace; 
-            overflow-x: hidden;
-            cursor: crosshair; /* Bulletproof vintage system crosshair */
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* Pure CSS Tiling Star Universe Background Layer */
-        #star-universe {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
-            background-size: 550px 550px;
-            background-position: 0 0, 40px 60px;
-            z-index: 1;
-            pointer-events: none;
-            animation: moveStars 60s linear infinite;
-        }
+<title>★ LAILA'S INTERNET CORNER ★</title>
 
-        @keyframes moveStars {
-            from { background-position: 0 0, 40px 60px; }
-            to { background-position: 550px 550px, 590px 610px; }
-        }
+<style>
 
-        /* 2000s SPLASH ENTER SCREEN */
-        #enter-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #050505;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            text-align: center;
-        }
+/* =========================
+   BASIC PAGE
+========================= */
 
-        .welcome-gif-text {
-            font-size: 2.5rem;
-            color: #FF00FF; /* Cyber Hot Pink */
-            font-weight: bold;
-            text-shadow: 3px 3px #00FFFF; /* Bright 3D shadow effect */
-            margin-bottom: 30px;
-            letter-spacing: 3px;
-        }
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background: #000000;
+    color: #00FF00;
+    font-family: "Courier New", Courier, monospace;
+}
 
-        #enter-button {
-            font-size: 1.8rem;
-            font-weight: bold;
-            background-color: #000;
-            color: #00FF00;
-            border: 3px outset #00FF00; /* Retro bevel block button styling */
-            padding: 10px 50px;
-            text-transform: uppercase;
-            box-shadow: 5px 5px 0px #FF00FF;
-            letter-spacing: 2px;
-            cursor: pointer;
-        }
+body {
+    overflow-x: hidden;
+    cursor: crosshair;
+}
 
-        #enter-button:active {
-            border: 3px inset #00FF00; 
-            box-shadow: 2px 2px 0px #FF00FF;
-        }
 
-        /* MAIN WEBSITE CONTENT AREA */
-        #main-content {
-            display: none;
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            z-index: 5;
-        }
+/* =========================
+   MOVING STAR BACKGROUND
+========================= */
 
-        header {
-            text-align: center;
-            border-bottom: 2px dashed #00FFFF;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-            background-color: rgba(0, 0, 0, 0.85); 
-            padding: 15px;
-        }
+#star-universe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 
-        header h1 {
-            color: #FFFF00; /* Neon Yellow */
-            font-size: 2.2rem;
-            margin: 10px 0;
-        }
+    background-image:
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
 
-        .marquee-simulation {
-            background-color: #111;
-            border: 1px solid #00FF00;
-            padding: 5px;
-            color: #00FFFF;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
+    background-size: 550px 550px;
+    background-position: 0 0, 40px 60px;
 
-        .window {
-            background-color: rgba(17, 17, 34, 0.95); 
-            border: 2px solid #00FF00;
-            margin-bottom: 25px;
-            box-shadow: 6px 6px 0px rgba(0, 255, 0, 0.2);
-        }
+    z-index: 1;
+    pointer-events: none;
 
-        .window-title {
-            background: linear-gradient(90deg, #FF00FF, #00FFFF);
-            color: #000;
-            padding: 4px 8px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: space-between;
-        }
+    animation: moveStars 60s linear infinite;
+}
 
-        .window-content {
-            padding: 15px;
-        }
+@keyframes moveStars {
 
-        .nav-menu {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 15px 0;
-        }
+    from {
+        background-position: 0 0, 40px 60px;
+    }
 
-        .nav-menu a {
-            color: #00FFFF;
-            text-decoration: none;
-            border: 1px solid #00FFFF;
-            padding: 5px 10px;
-            background-color: #000;
-        }
+    to {
+        background-position: 550px 550px, 590px 610px;
+    }
 
-        .nav-menu a:hover {
-            background-color: #00FFFF;
-            color: #000;
-        }
+}
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
 
-        .gallery-item {
-            border: 1px dashed #00FFFF;
-            background-color: #000;
-            height: 150px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #888;
-            font-size: 0.8rem;
-        }
-    </style>
+/* =========================
+   ENTER SCREEN
+========================= */
+
+#enter-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: #050505;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    z-index: 9999;
+}
+
+.welcome-gif-text {
+    font-size: 2.5rem;
+
+    color: #FF00FF;
+
+    font-weight: bold;
+
+    text-shadow:
+        3px 3px #00FFFF;
+
+    margin-bottom: 30px;
+
+    letter-spacing: 3px;
+}
+
+#enter-button {
+
+    font-size: 1.8rem;
+
+    font-weight: bold;
+
+    background: #000;
+
+    color: #00FF00;
+
+    border: 3px outset #00FF00;
+
+    padding: 10px 50px;
+
+    text-transform: uppercase;
+
+    box-shadow:
+        5px 5px 0 #FF00FF;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+}
+
+#enter-button:active {
+
+    border: 3px inset #00FF00;
+
+    box-shadow:
+        2px 2px 0 #FF00FF;
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+#main-content {
+
+    display: none;
+
+    position: relative;
+
+    max-width: 950px;
+
+    margin: 0 auto;
+
+    padding: 20px;
+
+    z-index: 5;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+
+    text-align: center;
+
+    background: rgba(0,0,0,.9);
+
+    border: 2px solid #00FFFF;
+
+    padding: 20px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        6px 6px 0 rgba(255,0,255,.4);
+}
+
+header h1 {
+
+    color: #FFFF00;
+
+    font-size: 2.3rem;
+
+    margin: 5px 0 10px;
+
+    text-shadow:
+        3px 3px #FF00FF;
+}
+
+.subtitle {
+
+    color: #00FFFF;
+
+    font-size: .85rem;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav-menu {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+.nav-menu a {
+
+    color: #00FFFF;
+
+    text-decoration: none;
+
+    border: 1px solid #00FFFF;
+
+    padding: 6px 12px;
+
+    background: #000;
+
+    font-size: .8rem;
+}
+
+.nav-menu a:hover {
+
+    background: #00FFFF;
+
+    color: #000;
+
+    box-shadow:
+        3px 3px #FF00FF;
+}
+
+
+/* =========================
+   MARQUEE
+========================= */
+
+.marquee-simulation {
+
+    background: #111;
+
+    border: 1px solid #00FF00;
+
+    padding: 5px;
+
+    color: #00FFFF;
+
+    font-size: .85rem;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   WINDOWS
+========================= */
+
+.window {
+
+    background: rgba(10,10,25,.96);
+
+    border: 2px solid #00FF00;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        6px 6px 0 rgba(0,255,0,.2);
+}
+
+.window-title {
+
+    background:
+        linear-gradient(
+            90deg,
+            #FF00FF,
+            #00FFFF
+        );
+
+    color: #000;
+
+    padding: 5px 8px;
+
+    font-weight: bold;
+
+    font-size: .85rem;
+
+    display: flex;
+
+    justify-content: space-between;
+}
+
+.window-content {
+
+    padding: 15px;
+}
+
+
+/* =========================
+   CURRENTLY
+========================= */
+
+.currently-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 10px;
+}
+
+.current-item {
+
+    border: 1px dashed #00FFFF;
+
+    background: #000;
+
+    padding: 12px;
+
+    min-height: 70px;
+
+    text-align: center;
+}
+
+.current-item .icon {
+
+    font-size: 1.4rem;
+
+    display: block;
+
+    margin-bottom: 7px;
+}
+
+.current-item .label {
+
+    color: #FF00FF;
+
+    font-weight: bold;
+
+    font-size: .75rem;
+}
+
+.current-item .value {
+
+    color: #FFFF00;
+
+    font-size: .8rem;
+
+    margin-top: 7px;
+}
+
+
+/* =========================
+   TWO COLUMN AREA
+========================= */
+
+.two-column {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 20px;
+}
+
+
+/* =========================
+   UPDATES
+========================= */
+
+.update {
+
+    border-bottom: 1px dotted #555;
+
+    padding: 10px 0;
+}
+
+.update:last-child {
+
+    border-bottom: none;
+}
+
+.update-date {
+
+    color: #FF00FF;
+
+    font-weight: bold;
+
+    font-size: .8rem;
+}
+
+.update-text {
+
+    color: #00FFFF;
+
+    margin-top: 4px;
+
+    font-size: .85rem;
+}
+
+
+/* =========================
+   ARCHIVE BUTTONS
+========================= */
+
+.archive-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+}
+
+.archive-button {
+
+    display: block;
+
+    text-align: center;
+
+    padding: 15px 5px;
+
+    background: #000;
+
+    border: 1px solid #00FFFF;
+
+    color: #00FFFF;
+
+    text-decoration: none;
+
+    font-size: .8rem;
+}
+
+.archive-button:hover {
+
+    background: #FF00FF;
+
+    color: #000;
+
+    border-color: #FFFF00;
+}
+
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(180px, 1fr));
+
+    gap: 15px;
+
+    margin-top: 15px;
+}
+
+.gallery-item {
+
+    border: 1px dashed #00FFFF;
+
+    background: #000;
+
+    min-height: 150px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: #777;
+
+    font-size: .8rem;
+
+    text-align: center;
+}
+
+
+/* =========================
+   MUSIC
+========================= */
+
+.music-box {
+
+    text-align: center;
+
+    border: 1px dashed #FF00FF;
+
+    padding: 15px;
+
+    background: #000;
+}
+
+.music-title {
+
+    color: #FFFF00;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.music-button {
+
+    background: #000;
+
+    color: #00FFFF;
+
+    border: 2px outset #00FFFF;
+
+    padding: 7px 18px;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.music-button:active {
+
+    border-style: inset;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    text-align: center;
+
+    color: #555;
+
+    font-size: .7rem;
+
+    padding: 30px 10px 50px;
+}
+
+footer span {
+
+    color: #FF00FF;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    #main-content {
+
+        padding: 10px;
+    }
+
+    header h1 {
+
+        font-size: 1.5rem;
+    }
+
+    .currently-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .two-column {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .archive-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-    <!-- DIGITAL COSMOS LAYER -->
-    <div id="star-universe"></div>
+<!-- =========================
+     STAR BACKGROUND
+========================= -->
 
-    <!-- HIDDEN AUDIO ENGINE -->
-    <audio id="bg-audio" loop src="bg-music.mp3"></audio>
+<div id="star-universe"></div>
 
-    <!-- RETRO ENTER SCREEN -->
-    <div id="enter-screen">
-        <div class="welcome-gif-text">::: WELCOME TO MY WORLD :::</div>
-        <button id="enter-button" onclick="enterSite()">ENTER</button>
-        <p style="color: #fff; font-size: 0.8rem; margin-top: 20px; text-shadow: 1px 1px #000;">[ Background music starts upon entry ]</p>
+<!-- =========================
+     BACKGROUND MUSIC
+
+     Put your MP3 in the same
+     folder as this HTML file.
+     
+     Name it:
+     bg-music.mp3
+========================= -->
+
+<audio
+ id="bg-audio"
+ loop
+ src="bg-music.mp3"> </audio>
+
+<!-- =========================
+     ENTER SCREEN
+========================= -->
+
+<div id="enter-screen">
+
+```
+<div class="welcome-gif-text">
+```
+</div>
+
+
+<button
+    id="enter-button"
+    onclick="enterSite()">
+
+    ENTER
+
+</button>
+
+
+<p
+    style="
+    color:#fff;
+    font-size:.8rem;
+    margin-top:20px;
+    ">
+
+    [ background music starts upon entry ]
+
+</p>
+</div> <!-- ========================= MAIN WEBSITE ========================= --> <div id="main-content"> <!-- ========================= HEADER ========================= --> <header>
+</header>
+
+<h1>
+
+    ★ LAILA'S INTERNET CORNER ★
+
+</h1>
+
+
+<div class="subtitle">
+
+    welcome ♡
+    last updated:
+    <span id="last-updated">
+
+        29.08.26
+
+    </span>
+
+</div>
+
+
+<nav class="nav-menu">
+
+    <a href="#home">
+        ★ HOME
+    </a>
+
+    <a href="#currently">
+        ♫ CURRENTLY
+    </a>
+
+    <a href="#archive">
+        📁 ARCHIVE
+    </a>
+
+    <a href="#art">
+        🎨 ART
+    </a>
+
+    <a href="#photo">
+        📷 PHOTO
+    </a>
+
+</nav>
+
+</header> <!-- ========================= MARQUEE ========================= --> <div class="marquee-simulation">
+<marquee scrollamount="4">
+
+    ✦ welcome to my little corner of the internet
+    ✦ currently updating my archive
+    ✦ stay weird ♡
+    ✦
+
+</marquee>
+
+</div> <!-- ========================= CURRENTLY ========================= --> <div class="window" id="currently">
+<div class="window-title">
+
+    <span>
+        currently.exe
+    </span>
+
+    <span>
+        [X]
+    </span>
+
+</div>
+
+
+<div class="window-content">
+
+    <p
+        style="
+        color:#00FFFF;
+        margin-top:0;
+        ">
+
+        ★ things i'm into lately ★
+
+    </p>
+
+
+    <div class="currently-grid">
+
+
+        <div class="current-item">
+
+            <span class="icon">
+                ♫
+            </span>
+
+            <div class="label">
+                LISTENING
+            </div>
+
+            <div class="value">
+                your song here
+            </div>
+
+        </div>
+
+
+        <div class="current-item">
+
+            <span class="icon">
+                📺
+            </span>
+
+            <div class="label">
+                WATCHING
+            </div>
+
+            <div class="value">
+                your show here
+            </div>
+
+        </div>
+
+
+        <div class="current-item">
+
+            <span class="icon">
+                🎮
+            </span>
+
+            <div class="label">
+                PLAYING
+            </div>
+
+            <div class="value">
+                your game here
+            </div>
+
+        </div>
+
+
+        <div class="current-item">
+
+            <span class="icon">
+                📖
+            </span>
+
+            <div class="label">
+                READING
+            </div>
+
+            <div class="value">
+                your book here
+            </div>
+
+        </div>
+
+
     </div>
 
-    <!-- MAIN RETRO PORTAL -->
-    <div id="main-content">
-        <header>
-            <h1>★ LAILA'S CREATIVE ARCHIVE ★</h1>
-            <div class="nav-menu">
-                <a href="#about">📁 ABOUT</a>
-                <a href="#art">🎨 ART</a>
-                <a href="#photo">📷 PHOTO</a>
-            </div>
-        </header>
+</div>
+</div> <!-- ========================= WHAT'S NEW + MUSIC ========================= --> <div class="two-column">
 
-        <div class="marquee-simulation">
-            <marquee scrollamount="4">✦ Site last updated: August 2026 ✦ Welcome to the handmade web zone! ✦ Feel free to look around... ✦</marquee>
-        </div>
+    <!-- WHAT'S NEW -->
 
-        <div class="window" id="about">
-            <div class="window-title">
-                <span>about_me.txt</span>
-                <span>[X]</span>
-            </div>
-            <div class="window-content">
-                <p>hi, i'm laila.  
+<div
+    class="window"
+    id="home">
 
-i make things.  
+    <div class="window-title">
 
-look around ♡  .</p>
-                <p>Use the navigation links above to browse through my archive collections.</p>
-            </div>
-        </div>
+        <span>
+            whats_new.log
+        </span>
 
-        <div class="window" id="music">
-            <div class="window-title">
-                <span>audio_player.exe</span>
-                <span>[X]</span>
-            </div>
-            <div class="window-content" style="text-align: center; padding: 15px;">
-                <p style="color: #FF00FF; margin-top: 0; font-weight: bold; letter-spacing: 1px;">🔊 BACKGROUND MP3 TRACK TUNED ACTIVE 🔊</p>
-                <button onclick="toggleAudio()" style="background:#000; color:#00FFFF; border:2px outset #00FFFF; padding:5px 15px; font-family: 'Courier New', monospace; cursor:pointer; font-weight:bold;">MUTE / UNMUTE LOGS</button>
-            </div>
-        </div>
+        <span>
+            [X]
+        </span>
 
-        <div class="window" id="art">
-            <div class="window-title">
-                <span>my_art_gallery.sys</span>
-                <span>[X]</span>
-            </div>
-            <div class="window-content">
-                <p>This panel will display my custom paintings, illustrations, and art projects over time.</p>
-                <div class="gallery-grid">
-                    <div class="gallery-item">[ Art Piece 1 Placeholder ]</div>
-                    <div class="gallery-item">[ Art Piece 2 Placeholder ]</div>
-                    <div class="gallery-item">[ Art Piece 3 Placeholder ]</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="window" id="photo">
-            <div class="window-title">
-                <span>camera_roll_archive.dll</span>
-                <span>[X]</span>
-            </div>
-            <div class="window-content">
-                <p>A continuous folder stream detailing snapshots, visual projects, and photography logs.</p>
-                <div class="gallery-grid">
-                    <div class="gallery-item">[ Photo Asset 1 Placeholder ]</div>
-                    <div class="gallery-item">[ Photo Asset 2 Placeholder ]</div>
-                    <div class="gallery-item">[ Photo Asset 3 Placeholder ]</div>
-                </div>
-            </div>
-        </div>
     </div>
 
-    <script>
-        function enterSite() {
-            document.getElementById('enter-screen').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            
-            var audio = document.getElementById('bg-audio');
-            audio.play().catch(function(err) {
-                console.log("Playback system error:", err);
-            });
-        }
 
-        function toggleAudio() {
-            var audio = document.getElementById('bg-audio');
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
-        }
-    </script>
+    <div class="window-content">
 
-</body>
-</html>
+
+        <div class="update">
+
+            <div class="update-date">
+
+                29.08.26
+
+            </div>
+
+            <div class="update-text">
+
+                ✦ added my new website archive
+
+            </div>
+
+        </div>
+
+
+        <div class="update">
+
+            <div class="update-date">
+
+                27.08.26
+
+            </div>
+
+            <div class="update-text">
+
+                ✦ started a new creative project
+
+            </div>
+
+        </div>
+
+
+        <div class="update">
+
+            <div class="update-date">
+
+                24.08.26
+
+            </div>
+
+            <div class="update-text">
+
+                ✦ currently obsessed with ______
+
+            </div>
+
+        </div>
+
+
+        <div class="update">
+
+            <div class="update-date">
+
+                20.08.26
+
+            </div>
+
+            <div class="update-text">
+
+                ✦ watched ______
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- MUSIC -->
+
+<div class="window">
+
+    <div class="window-title">
+
+        <span>
+            audio_player.exe
+        </span>
+
+        <span>
+            [X]
+        </span>
+
+    </div>
+
+
+    <div class="window-content">
+
+        <div class="music-box">
+
+            <div class="music-title">
+
+                ♫ CURRENT SITE MUSIC ♫
+
+            </div>
+
+
+            <p
+                style="
+                color:#777;
+                font-size:.75rem;
+                ">
+
+                background soundtrack
+
+            </p>
+
+
+            <button
+                class="music-button"
+                onclick="toggleAudio()">
+
+                MUTE / UNMUTE
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+</div> <!-- ========================= ARCHIVE ========================= --> <div class="window" id="archive">
+<div class="window-title">
+
+    <span>
+        personal_archive.sys
+    </span>
+
+    <span>
+        [X]
+    </span>
+
+</div>
+
+
+<div class="window-content">
+
+    <p style="color:#00FFFF;">
+
+        ★ MY ARCHIVE ★
+
+    </p>
+
+
+    <p
+        style="
+        color:#777;
+        font-size:.8rem;
+        ">
+
+        little pieces of what i've been doing,
+        watching, listening to, making and discovering.
+
+    </p>
+
+
+    <div class="archive-grid">
+
+
+        <a
+            class="archive-button"
+            href="#music-archive">
+
+            ♫
+            <br>
+            MUSIC
+
+        </a>
+
+
+        <a
+            class="archive-button"
+            href="#watched">
+
+            📺
+            <br>
+            WATCHED
+
+        </a>
+
+
+        <a
+            class="archive-button"
+            href="#projects">
+
+            💻
+            <br>
+            PROJECTS
+
+        </a>
+
+
+        <a
+            class="archive-button"
+            href="#art">
+
+            🎨
+            <br>
+            ART
+
+        </a>
+
+
+        <a
+            class="archive-button"
+            href="#photo">
+
+            📷
+            <br>
+            PHOTOS
+
+        </a>
+
+
+        <a
+            class="archive-button"
+            href="#random">
+
+            ✦
+            <br>
+            RANDOM
+
+        </a>
+
+
+    </div>
+
+</div>
+</div> <!-- ========================= MUSIC ARCHIVE ========================= --> <div class="window" id="music-archive">
+<div class="window-title">
+
+    <span>
+        music_archive.mp3
+    </span>
+
+    <span>
+        [X]
+    </span>
+
+</div>
+
+
+<div class="window-content">
+
+    <p style="color:#FF00FF;">
+
+        ♫ MUSIC LATELY
+
+    </p>
+
+
+    <div class="update">
+
+        <div class="update-date">
+
+            AUGUST 2026
+
+        </div>
+
+
+        <div class="update-text">
+
+            ♫ Song — Artist
+            <br>
+
+            ♫ Song — Artist
+            <br>
+
+            ♫ Song — Artist
+
+        </div>
+
+    </div>
+
+
+    <p
+        style="
+        color:#555;
+        font-size:.75rem;
+        ">
+
+        more songs will be added as i discover them...
+
+    </p>
+
+</div>
+</div> <!-- ========================= WATCHED ========================= --> <div class="window" id="watched">
+
+    <div class="window-title">
+
+    <span>
+        watched_archive.tv
+    </span>
+
+    <span>
+        [X]
+    </span>
+
+</div>
+
+
+<div class="window-content">
+
+    <p style="color:#FF00FF;">
+
+        📺 WATCHED LATELY
+
+    </p>
+
+
+    <div class="update">
+
+        <div class="update-date">
+
+            AUGUST 2026
+
+        </div>
+
+
+        <div class="update-text">
+
+            ★ Show / Movie
+            <br>
+
+            ★ Show / Movie
+            <br>
+
+            ★ Show / Movie
+
+        </div>
+
+    </div>
+
+</div>
+
+</div> <!-- ========================= PROJECTS ========================= --> <div class="window" id="projects"></div>
+
+<div class="window-title">
+
+    <span>
+        projects.exe
+    </span>
+
+    <span>
+        [X]
+    </span>
+
+</div>
+
+
+<div class="window-content">
+
+    <p style="color:#FF00FF;">
+
+        💻 THINGS I'M MAKING
+
+    </p>
+
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item">
+
+            [ Project 1 ]
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            [ Project 2 ]
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            [ Project 3 ]
+
+        </div>
+
+    </div>
+
+</div>
+
+</div> <!-- ========================= ART ========================= --> <div class="window" id="art">
+<div class="window-title">
+
+    <span>
+        my_art_gallery.sys
+    </span>
+
+    <span>
+        [X]
+    </span>
+
+</div>
+
+
+<div class="window-content">
+
+    <p style="color:#FF00FF;">
+
+        🎨 ART
+
+    </p>
+
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item">
+
+            [ Art Piece 1 ]
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            [ Art Piece 2 ]
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            [ Art Piece 3 ]
+
+        </div>
+
+    </div>
+
+</div>
+</div> <!-- ========================= PHOTOS ========================= --> <div class="window" id="photo">
+
+    <div class="window-title">
+
+    <span>
+        camera_roll_archive.dll
+    </span>
+
+    <span>
+        [X]
+    </span>
+
+</div>
+
+
+<div class="window-content">
+
+    <p style="color:#FF00FF;">
+
+        📷 PHOTO ARCHIVE
+
+    </p>
+
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item">
+
+            [ Photo 1 ]
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            [ Photo 2 ]
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            [ Photo 3 ]
+
+        </div>
+
+    </div>
+
+</div>
+
+</div> <!-- ========================= RANDOM ========================= --> <div class="window" id="random">
+<div class="window-title">
+
+    <span>
+        random_stuff.txt
+    </span>
+
+    <span>
+        [X]
+    </span>
+
+</div>
+
+
+<div class="window-content">
+
+    <p style="color:#FF00FF;">
+
+        ✦ RANDOM THINGS ✦
+
+    </p>
+
+
+    <p style="color:#00FFFF;">
+
+        things that don't belong anywhere else ♡
+
+    </p>
+
+
+    <p style="color:#777;">
+
+        • random discoveries
+        <br>
+
+        • funny things
+        <br>
+
+        • places i've been
+        <br>
+
+        • things i've bought
+        <br>
+
+        • random thoughts
+        <br>
+
+        • anything else i feel like saving
+
+    </p>
+
+</div>
+</div> <!-- ========================= FOOTER ========================= --> <footer>
+★ LAILA'S INTERNET CORNER ★
+
+<br><br>
+
+made with HTML + CSS + a little chaos
+
+<br><br>
+
+<span>
+
+    last updated: AUGUST 2026
+
+</span>
+</footer> </div> <!-- ========================= JAVASCRIPT ========================= --> <script> /* ENTER WEBSITE */ function enterSite() { document.getElementById( "enter-screen" ).style.display = "none"; document.getElementById( "main-content" ).style.display = "block"; var audio = document.getElementById( "bg-audio" ); audio.play().catch(function(error) { console.log( "Audio could not start:", error ); }); } /* MUSIC BUTTON */ function toggleAudio() { var audio = document.getElementById( "bg-audio" ); if (audio.paused) { audio.play(); } else { audio.pause(); } } </script> </body> </html> :::
