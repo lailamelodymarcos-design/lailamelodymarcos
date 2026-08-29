@@ -140,11 +140,14 @@
 </head>
 <body>
 
+    <!-- HIDDEN RETRO AUDIO TRACK LOADER -->
+    <audio id="bg-audio" loop src="bg-music.mp3"></audio>
+
     <!-- RETRO ENTER SCREEN -->
     <div id="enter-screen" onclick="enterSite()">
         <div class="welcome-gif-text">::: WELCOME TO MY WORLD :::</div>
         <button id="enter-button">ENTER</button>
-        <p style="color: #888; font-size: 0.8rem; margin-top: 20px;">[ Click tracking player loads upon entry ]</p>
+        <p style="color: #888; font-size: 0.8rem; margin-top: 20px;">[ Background music starts upon entry ]</p>
     </div>
 
     <!-- MAIN RETRO PORTAL -->
@@ -183,8 +186,14 @@
                 <span>[X]</span>
             </div>
             <div class="window-content" style="text-align: center; padding: 10px;">
-                <!-- Your specific Spotify Embed Code Integration -->
-                <div id="music-container">
+                <p style="color: #FF00FF; margin-top: 0; font-weight: bold;">🔊 BACKSTAGE MUSIC PLAYER LOOPS ACTIVE 🔊</p>
+                
+                <!-- Vintage controller system link button -->
+                <button onclick="toggleAudio()" style="background:#000; color:#00FFFF; border:2px outset #00FFFF; padding:5px 15px; font-family: 'Courier New', monospace; cursor:pointer; font-weight:bold; margin-bottom:15px;">MUTE / UNMUTE LOGS</button>
+                
+                <!-- Your customized tracking widget layer stays down here -->
+                <div id="music-container" style="margin-top:10px; border-top:1px dashed #444; padding-top:15px;">
+                    <p style="font-size:0.8rem; color:#888;">Featured Track Recommendation:</p>
                     <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/2jjwQENSoGnYbQEK4acuC6?utm_source=generator&si=1b915bf32f6344a3" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                 </div>
             </div>
@@ -197,6 +206,21 @@
             document.getElementById('enter-screen').style.display = 'none';
             // Show site portal
             document.getElementById('main-content').style.display = 'block';
+            
+            // Instantly start your local mp3 full song engine track loop
+            var audio = document.getElementById('bg-audio');
+            audio.play().catch(function(err) {
+                console.log("Playback system error:", err);
+            });
+        }
+
+        function toggleAudio() {
+            var audio = document.getElementById('bg-audio');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
         }
     </script>
 
