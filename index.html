@@ -12,13 +12,21 @@
             width: 100%;
             height: 100%;
             background-color: #000000;
-            background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-                              radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
-            background-size: 550px 550px;
-            background-position: 0 0, 40px 60px;
+            
+            /* Tiling animated space background pattern */
+            background-image: url('https://archive.org');
+            background-repeat: repeat; 
+            
             color: #00FF00; /* Retro Matrix/Terminal green */
             font-family: 'Courier New', Courier, monospace; 
-            cursor: crosshair; 
+            
+            /* Custom Vintage Cursor (Crosshair fallback) */
+            cursor: url('https://cursors-4u.net'), url('https://cursors-4u.net'), crosshair !important;
+        }
+
+        /* Ensure clickable things retain custom cursor pointer vibe */
+        button, a, #enter-screen {
+            cursor: url('https://cursors-4u.net'), pointer !important;
         }
 
         /* 2000s SPLASH ENTER SCREEN */
@@ -29,6 +37,8 @@
             width: 100%;
             height: 100%;
             background-color: #050505;
+            background-image: url('https://archive.org');
+            background-repeat: repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -54,7 +64,6 @@
             border: 3px outset #00FF00; /* Authentic bevel block button */
             padding: 10px 50px;
             text-transform: uppercase;
-            cursor: pointer;
             box-shadow: 5px 5px 0px #FF00FF;
             letter-spacing: 2px;
         }
@@ -78,6 +87,8 @@
             border-bottom: 2px dashed #00FFFF;
             padding-bottom: 20px;
             margin-bottom: 30px;
+            background-color: rgba(0, 0, 0, 0.7); 
+            padding: 15px;
         }
 
         header h1 {
@@ -97,7 +108,7 @@
 
         /* Content Windows */
         .window {
-            background-color: #111122;
+            background-color: rgba(17, 17, 34, 0.9); /* Slight window transparency */
             border: 2px solid #00FF00;
             margin-bottom: 25px;
             box-shadow: 6px 6px 0px rgba(0, 255, 0, 0.2);
@@ -130,11 +141,31 @@
             text-decoration: none;
             border: 1px solid #00FFFF;
             padding: 5px 10px;
+            background-color: #000;
         }
 
         .nav-menu a:hover {
             background-color: #00FFFF;
             color: #000;
+        }
+
+        /* Grid Layout for Gallery Placeholders */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .gallery-item {
+            border: 1px dashed #00FFFF;
+            background-color: #000;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #888;
+            font-size: 0.8rem;
         }
     </style>
 </head>
@@ -147,7 +178,7 @@
     <div id="enter-screen" onclick="enterSite()">
         <div class="welcome-gif-text">::: WELCOME TO MY WORLD :::</div>
         <button id="enter-button">ENTER</button>
-        <p style="color: #888; font-size: 0.8rem; margin-top: 20px;">[ Background music starts upon entry ]</p>
+        <p style="color: #fff; font-size: 0.8rem; margin-top: 20px; text-shadow: 1px 1px #000;">[ Background music starts upon entry ]</p>
     </div>
 
     <!-- MAIN RETRO PORTAL -->
@@ -155,10 +186,9 @@
         <header>
             <h1>★ LAILA'S CREATIVE ARCHIVE ★</h1>
             <div class="nav-menu">
+                <a href="#about">📁 ABOUT</a>
                 <a href="#art">🎨 ART</a>
                 <a href="#photo">📷 PHOTO</a>
-                <a href="#writing">✍️ WRITING</a>
-                <a href="#projects">🎮 PROJECTS</a>
             </div>
         </header>
 
@@ -175,26 +205,50 @@
             </div>
             <div class="window-content">
                 <p>Welcome to my corner of the web. This site is completely custom-built from zero, inspired by old-school digital freedom.</p>
-                <p>Use the navigation tabs above to browse through my art logs, videos, and games.</p>
+                <p>Use the navigation links above to browse through my archive collections.</p>
             </div>
         </div>
 
-        <!-- Music Window Container -->
+        <!-- Clean Audio Controller Window (No Spotify) -->
         <div class="window" id="music">
             <div class="window-title">
                 <span>audio_player.exe</span>
                 <span>[X]</span>
             </div>
-            <div class="window-content" style="text-align: center; padding: 10px;">
-                <p style="color: #FF00FF; margin-top: 0; font-weight: bold;">🔊 BACKSTAGE MUSIC PLAYER LOOPS ACTIVE 🔊</p>
-                
-                <!-- Vintage controller system link button -->
-                <button onclick="toggleAudio()" style="background:#000; color:#00FFFF; border:2px outset #00FFFF; padding:5px 15px; font-family: 'Courier New', monospace; cursor:pointer; font-weight:bold; margin-bottom:15px;">MUTE / UNMUTE LOGS</button>
-                
-                <!-- Your customized tracking widget layer stays down here -->
-                <div id="music-container" style="margin-top:10px; border-top:1px dashed #444; padding-top:15px;">
-                    <p style="font-size:0.8rem; color:#888;">Featured Track Recommendation:</p>
-                    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/2jjwQENSoGnYbQEK4acuC6?utm_source=generator&si=1b915bf32f6344a3" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <div class="window-content" style="text-align: center; padding: 15px;">
+                <p style="color: #FF00FF; margin-top: 0; font-weight: bold; letter-spacing: 1px;">🔊 BACKGROUND MP3 TRACK TUNED ACTIVE 🔊</p>
+                <button onclick="toggleAudio()" style="background:#000; color:#00FFFF; border:2px outset #00FFFF; padding:5px 15px; font-family: 'Courier New', monospace; cursor:pointer; font-weight:bold;">MUTE / UNMUTE LOGS</button>
+            </div>
+        </div>
+
+        <!-- Art Window Showcase Panel Placeholder -->
+        <div class="window" id="art">
+            <div class="window-title">
+                <span>my_art_gallery.sys</span>
+                <span>[X]</span>
+            </div>
+            <div class="window-content">
+                <p>This panel will display my custom paintings, illustrations, and art projects over time.</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">[ Art Piece 1 Placeholder ]</div>
+                    <div class="gallery-item">[ Art Piece 2 Placeholder ]</div>
+                    <div class="gallery-item">[ Art Piece 3 Placeholder ]</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Photography Window Showcase Panel Placeholder -->
+        <div class="window" id="photo">
+            <div class="window-title">
+                <span>camera_roll_archive.dll</span>
+                <span>[X]</span>
+            </div>
+            <div class="window-content">
+                <p>A continuous folder stream detailing snapshots, visual projects, and photography logs.</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">[ Photo Asset 1 Placeholder ]</div>
+                    <div class="gallery-item">[ Photo Asset 2 Placeholder ]</div>
+                    <div class="gallery-item">[ Photo Asset 3 Placeholder ]</div>
                 </div>
             </div>
         </div>
@@ -202,12 +256,9 @@
 
     <script>
         function enterSite() {
-            // Hide intro screen
             document.getElementById('enter-screen').style.display = 'none';
-            // Show site portal
             document.getElementById('main-content').style.display = 'block';
             
-            // Instantly start your local mp3 full song engine track loop
             var audio = document.getElementById('bg-audio');
             audio.play().catch(function(err) {
                 console.log("Playback system error:", err);
