@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>★ MY PERSONAL ARCHIVE ★</title>
     <style>
-        /* Early 2000s Web Layout & Theme */
+        /* Stable Early 2000s Web Layout & Theme */
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
             background-color: #000000;
-            color: #00FF00; /* Retro Matrix Terminal green */
+            color: #00FF00; /* Retro Matrix Terminal Green */
             font-family: 'Courier New', Courier, monospace; 
             overflow-x: hidden;
+            cursor: crosshair; /* Bulletproof vintage system crosshair fallback */
         }
 
-        /* Pure CSS Twinkling Background Layer */
+        /* Pure CSS Tiling Star Universe Background Layer */
         #star-universe {
             position: fixed;
             top: 0;
@@ -30,7 +31,7 @@
             background-size: 550px 550px;
             background-position: 0 0, 40px 60px;
             z-index: 1;
-            pointer-events: none; /* Allows clicks to pass through */
+            pointer-events: none;
             animation: moveStars 60s linear infinite;
         }
 
@@ -69,12 +70,11 @@
             font-weight: bold;
             background-color: #000;
             color: #00FF00;
-            border: 3px outset #00FF00; 
+            border: 3px outset #00FF00; /* Retro bevel block button styling */
             padding: 10px 50px;
             text-transform: uppercase;
             box-shadow: 5px 5px 0px #FF00FF;
             letter-spacing: 2px;
-            z-index: 10000;
             cursor: pointer;
         }
 
@@ -175,20 +175,6 @@
             color: #888;
             font-size: 0.8rem;
         }
-
-        /* Code-Generated Retro Cursor Sparkle style */
-        .cursor-sparkle {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background-color: #FF00FF;
-            box-shadow: 0 0 8px #00FFFF;
-            border-radius: 50%;
-            pointer-events: none; /* CRITICAL FIX: Stops cursor from blocking clicks */
-            z-index: 100000;
-            transform: translate(-50%, -50%);
-            transition: transform 0.02s linear;
-        }
     </style>
 </head>
 <body>
@@ -196,14 +182,10 @@
     <!-- DIGITAL COSMOS LAYER -->
     <div id="star-universe"></div>
 
-    <!-- CODE GENERATED CURSOR ELEMENT -->
-    <div id="custom-cursor" class="cursor-sparkle"></div>
-
     <!-- HIDDEN AUDIO ENGINE -->
     <audio id="bg-audio" loop src="bg-music.mp3"></audio>
 
     <!-- RETRO ENTER SCREEN -->
-    <!-- Removed onclick from entire screen, bound strictly to button interface below -->
     <div id="enter-screen">
         <div class="welcome-gif-text">::: WELCOME TO MY WORLD :::</div>
         <button id="enter-button" onclick="enterSite()">ENTER</button>
@@ -279,18 +261,28 @@
     </div>
 
     <script>
-        // Track mouse position to update our custom neon cursor
-        const cursorInstance = document.getElementById('custom-cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursorInstance.style.left = e.clientX + 'px';
-            cursorInstance.style.top = e.clientY + 'px';
-        });
-
         function enterSite() {
-            // Hide intro screen
+            // Hide intro screen layout instantly
             document.getElementById('enter-screen').style.display = 'none';
-            // Show site portal
+            // Show site dashboard portal framework
             document.getElementById('main-content').style.display = 'block';
             
+            // Fire your background track loop
             var audio = document.getElementById('bg-audio');
             audio.play().catch(function(err) {
+                console.log("Playback system error:", err);
+            });
+        }
+
+        function toggleAudio() {
+            var audio = document.getElementById('bg-audio');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+    </script>
+
+</body>
+</html>
