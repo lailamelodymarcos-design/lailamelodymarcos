@@ -15,7 +15,7 @@
             color: #00FF00; /* Retro Matrix Terminal Green */
             font-family: 'Courier New', Courier, monospace; 
             overflow-x: hidden;
-            cursor: crosshair; /* Bulletproof vintage system crosshair fallback */
+            cursor: crosshair; /* Fallback system crosshair */
         }
 
         /* Pure CSS Tiling Star Universe Background Layer */
@@ -38,6 +38,21 @@
         @keyframes moveStars {
             from { background-position: 0 0, 40px 60px; }
             to { background-position: 550px 550px, 590px 610px; }
+        }
+
+        /* CODE GENERATED NEON GLOW CURSOR TRAIL */
+        .neon-cursor-trail {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #FF00FF; /* Cyber Hot Pink */
+            box-shadow: 0 0 10px #00FFFF, 0 0 20px #FF00FF; /* Neon Cyan and Pink Glow */
+            border-radius: 50%;
+            pointer-events: none; /* CRITICAL: Allows clicks to pass right through it */
+            z-index: 100000;
+            transform: translate(-50%, -50%);
+            /* Smooth lag effect to make it feel like a trailing star */
+            transition: transform 0.08s ease-out; 
         }
 
         /* 2000s SPLASH ENTER SCREEN */
@@ -182,6 +197,9 @@
     <!-- DIGITAL COSMOS LAYER -->
     <div id="star-universe"></div>
 
+    <!-- CODE GENERATED GLOWING NEON CURSOR ELEMENT -->
+    <div id="custom-glow-cursor" class="neon-cursor-trail"></div>
+
     <!-- HIDDEN AUDIO ENGINE -->
     <audio id="bg-audio" loop src="bg-music.mp3"></audio>
 
@@ -261,28 +279,14 @@
     </div>
 
     <script>
+        // Track mouse position to smoothly slide the neon trailing star element
+        const trailCursor = document.getElementById('custom-glow-cursor');
+        document.addEventListener('mousemove', (e) => {
+            trailCursor.style.left = e.clientX + 'px';
+            trailCursor.style.top = e.clientY + 'px';
+        });
+
         function enterSite() {
-            // Hide intro screen layout instantly
             document.getElementById('enter-screen').style.display = 'none';
-            // Show site dashboard portal framework
             document.getElementById('main-content').style.display = 'block';
             
-            // Fire your background track loop
-            var audio = document.getElementById('bg-audio');
-            audio.play().catch(function(err) {
-                console.log("Playback system error:", err);
-            });
-        }
-
-        function toggleAudio() {
-            var audio = document.getElementById('bg-audio');
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
-        }
-    </script>
-
-</body>
-</html>
